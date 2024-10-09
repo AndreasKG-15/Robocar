@@ -31,8 +31,15 @@ GPIO.setup(pwm2F, GPIO.OUT)
 GPIO.setup(pwm1B, GPIO.OUT)
 GPIO.setup(pwm2B, GPIO.OUT)
 
-pwm = GPIO.PWM(pwm1F, 50)
-pwm.start(0)
+pwm1 = GPIO.PWM(pwm1F, 50)
+pwm2 = GPIO.PWM(pwm2F, 50)
+pwm3 = GPIO.PWM(pwm1B, 50)
+pwm4 = GPIO.PWM(pwm2B, 50)
+pwm1.start(0)
+pwm2.start(0)
+pwm3.start(0)
+pwm4.start(0)
+
 
 
 def forward(direction, speed):
@@ -41,7 +48,10 @@ def forward(direction, speed):
         GPIO.output(dir2F, GPIO.LOW)
         GPIO.output(dir1B, GPIO.HIGH)
         GPIO.output(dir2B, GPIO.LOW)
-    pwm.ChangeDutyCycle(speed)
+    pwm1.ChangeDutyCycle(speed)
+    pwm2.ChangeDutyCycle(speed)
+    pwm3.ChangeDutyCycle(speed)
+    pwm4.ChangeDutyCycle(speed)
 
 
 forward('forward', 50)
