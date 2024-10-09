@@ -57,5 +57,8 @@ def forward(direction, speed):
 forward('forward', 50)
 time.sleep(5)
 
-pwm.stop()
+pwm1.stop()
+pwm2.stop()
+pwm3.stop()
+pwm4.stop()
 GPIO.cleanup()
