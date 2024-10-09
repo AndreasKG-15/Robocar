@@ -54,7 +54,7 @@ def forward(direction, speed):
     pwm4.ChangeDutyCycle(speed)
 
 
-forward('forward', 50)
+forward('forward', 100)
 time.sleep(5)
 
 pwm1.stop()
