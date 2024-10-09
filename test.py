@@ -1,4 +1,4 @@
-from RPi.GPIO import GPIO as GPIO
+import RPi.GPIO as GPIO
 import time
 
 # set up pins
