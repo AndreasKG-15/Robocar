@@ -44,9 +44,9 @@ pwm4.start(0)
 
 def forward(direction, speed):
     if direction == 'forward':
-        GPIO.output(dir1F, GPIO.LOW)
+        GPIO.output(dir1F, GPIO.HIGH)
         GPIO.output(dir2F, GPIO.HIGH)
-        GPIO.output(dir1B, GPIO.LOW)
+        GPIO.output(dir1B, GPIO.HIGH)
         GPIO.output(dir2B, GPIO.HIGH)
     pwm1.ChangeDutyCycle(speed)
     pwm2.ChangeDutyCycle(speed)
