@@ -25,7 +25,7 @@ pwm2B = 1
 GPIO.setup(dir1F, GPIO.OUT)
 GPIO.setup(dir2F, GPIO.OUT)
 GPIO.setup(dir1B, GPIO.OUT)
-GPIO.setup(dir1B, GPIO.OUT)
+GPIO.setup(dir2B, GPIO.OUT)
 GPIO.setup(pwm1F, GPIO.OUT)
 GPIO.setup(pwm2F, GPIO.OUT)
 GPIO.setup(pwm1B, GPIO.OUT)
