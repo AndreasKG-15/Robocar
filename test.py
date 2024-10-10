@@ -79,13 +79,13 @@ try:
             Move(GPIO.LOW, 100, 100)
         elif sensor_value_left == GPIO.LOW and sensor_value_right == GPIO.LOW:
             print("Both sensors detected line, moving forward slowly")
-            Move(GPIO.LOW, 25, 25)
+            Move(GPIO.LOW, 33, 33)
         elif sensor_value_left == GPIO.LOW:
             print("Left sensor detected line")
-            Move(GPIO.LOW, 50, 100)
+            Move(GPIO.LOW, 60, 100)
         elif sensor_value_right == GPIO.LOW:
             print("Right sensor detected line")
-            Move(GPIO.LOW, 100, 50)
+            Move(GPIO.LOW, 100, 60)
         time.sleep(0.1)   
 except KeyboardInterrupt:
     pass
