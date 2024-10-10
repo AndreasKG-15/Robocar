@@ -49,7 +49,7 @@ pwm4.start(0)
 
 
 
-def forward(direction, speedL, speedR):
+def Move(direction, speedL, speedR):
     GPIO.output(dir1F, direction)
     GPIO.output(dir2F, not direction)
     pwm1.ChangeDutyCycle(speedL)
@@ -67,6 +67,7 @@ try:
         
         if sensor_value_right == GPIO.HIGH and sensor_value_left == GPIO.HIGH:
             print("No line detected, moving forward")
+            Move(GPIO.HIGH, 100, 100)
         elif sensor_value_left == GPIO.LOW and sensor_value_right == GPIO.LOW:
             print("Both sensors detected line, moving forward slowly")
         elif sensor_value_left == GPIO.LOW:
