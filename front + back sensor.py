@@ -155,24 +155,24 @@ try:
             print("Back right sensor detected line")
             Move(GPIO.LOW, max_speed, lowest_speed)
         '''
-        if sensor_value_left == 0:
+        if sensor_value_left == GPIO.LOW:
             sensor_left_flag = True
             left_sensor_time = current_time
             print("Left sensor detected")
-        if sensor_value_right == 0:
+        if sensor_value_right == GPIO.LOW:
             sensor_right_flag = True
             right_sensor_time = current_time
             print("Right sensor detected")
-        if back_sensor_left_value == 0:
+        if back_sensor_left_value == GPIO.LOW:
             back_sensor_left_flag = True
             back_sensor_left_time = current_time
             print("Back left sensor detected")
-        if back_sensor_right_value == 0:
+        if back_sensor_right_value == GPIO.LOW:
             back_sensor_right_flag = True
             back_sensor_right_time = current_time
             print("Back right sensor detected")
         if sensor_left_flag and sensor_right_flag:
-            if current_time - left_sensor_time > 0.5 and current_time - right_sensor_time > 0.5:
+            if current_time - left_sensor_time < 0.5 and current_time - right_sensor_time < 0.5:
                 print("Both front sensors detected")
                 Move(GPIO.LOW, lowest_speed+20, lowest_speed+20)
             
