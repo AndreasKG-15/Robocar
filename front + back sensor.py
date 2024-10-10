@@ -135,8 +135,12 @@ try:
             #if sensor_value_left == GPIO.LOW:
             #    break
             #time.sleep(0.1)
-            
-            
+        elif back_sensor_right_value == GPIO.LOW and sensor_value_left == GPIO.LOW:
+            print("Back right sensor detected line")
+            Move(GPIO.LOW, lowest_speed, max_speed) 
+        elif back_sensor_left_value == GPIO.LOW and sensor_value_right == GPIO.LOW:
+            print("Back right sensor detected line")
+            Move(GPIO.LOW, max_speed, lowest_speed) 
             
         time.sleep(0.1)   
 except KeyboardInterrupt:
