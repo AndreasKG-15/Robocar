@@ -98,6 +98,8 @@ try:
                 print("Left sensor disabled")
                 print("backup sensor enabled")
                 Move(GPIO.LOW, 70, 30)
+            else:
+                break
             #time.sleep(0.1)
             #if sensor_value_right == GPIO.LOW:
             #    break
@@ -111,6 +113,8 @@ try:
                 print("Right sensor disabled")
                 print("Righ backup sensor enabled")
                 Move(GPIO.LOW, 30, 70)
+            else:
+                break
             #if sensor_value_left == GPIO.LOW:
             #    break
             #time.sleep(0.1)
