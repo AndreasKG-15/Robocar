@@ -175,6 +175,10 @@ try:
             if current_time - left_sensor_time < 0.5 and current_time - right_sensor_time < 0.5:
                 print("Both front sensors detected")
                 Move(GPIO.LOW, lowest_speed+50, lowest_speed+50)
+        if sensor_left_flag and back_sensor_right_flag:
+            if current_time - left_sensor_time < 0.5 and current_time - back_sensor_right_time < 0.5:
+                print("Left front and right back sensors detected")
+                Move(GPIO.LOW, lowest_speed+25, max_speed-10)
             
         time.sleep(0.1)   
 except KeyboardInterrupt:
