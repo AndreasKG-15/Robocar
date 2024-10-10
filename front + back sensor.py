@@ -158,13 +158,13 @@ try:
         if sensor_value_left == GPIO.LOW:
             sensor_left_flag = True
             left_sensor_time = current_time
-            #print("Left sensor detected")
+            print("Left sensor detected")
         elif sensor_value_left == GPIO.HIGH:
             Move(GPIO.LOW, lowest_speed, max_speed)
         if sensor_value_right == GPIO.LOW:
             sensor_right_flag = True
             right_sensor_time = current_time
-            #print("Right sensor detected")
+            print("Right sensor detected")
         elif sensor_value_right == GPIO.HIGH:
             Move(GPIO.LOW, max_speed, lowest_speed)
         if back_sensor_left_value == GPIO.LOW:
@@ -172,13 +172,13 @@ try:
             back_sensor_left_time = current_time
         elif back_sensor_left_value == GPIO.HIGH:
             Move(GPIO.LOW, lowest_speed, max_speed)
-            #print("Back left sensor detected")
+            print("Back left sensor detected")
         if back_sensor_right_value == GPIO.LOW:
             back_sensor_right_flag = True
             back_sensor_right_time = current_time
         elif back_sensor_right_value == GPIO.HIGH:
             Move(GPIO.LOW, max_speed, lowest_speed)
-            #print("Back right sensor detected")
+            print("Back right sensor detected")
             
         # Pair sensor detection
         
