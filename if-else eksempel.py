@@ -84,7 +84,7 @@ try:
         back_sensor_left_value = GPIO.input(back_sensor_left)
         back_sensor_right_value = GPIO.input(back_sensor_right)
         current_time = time.time()
-        if sensor_value_left == 1 and sensor_value_right == 1 and front_left_sensor == True and front_right_sensor == True:
+        if sensor_value_left == 1 and sensor_value_right == 1   :
             print("Both sensors are off the line")
             Move(0, 50, 50)
         if sensor_value_left == 1 and sensor_value_right == 0 and front_left_sensor == True and front_right_sensor == True:
