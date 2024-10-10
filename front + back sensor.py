@@ -187,27 +187,27 @@ try:
             Move(GPIO.LOW, max_speed, max_speed)
         # If both front sensors detect line
         if sensor_left_flag and sensor_right_flag:
-            if current_time - left_sensor_time < 0.1 and current_time - right_sensor_time < 0.1:
+            if current_time - left_sensor_time < 0.05 and current_time - right_sensor_time < 0.05:
                 print("Both front sensors detected")
                 Move(GPIO.LOW, max_speed, max_speed)
         # If front left sensor and back right sensor detect line
         if sensor_left_flag and back_sensor_right_flag:
-            if current_time - left_sensor_time < 0.1 and current_time - back_sensor_right_time < 0.1:
+            if current_time - left_sensor_time < 0.05 and current_time - back_sensor_right_time < 0.05:
                 print("Left front and right back sensors detected")
                 Move(GPIO.LOW, lowest_speed, max_speed)
         # if front right sensor and back left sensor detect line
         if sensor_right_flag and back_sensor_left_flag:
-            if current_time - right_sensor_time < 0.1 and current_time - back_sensor_left_time < 0.1:
+            if current_time - right_sensor_time < 0.05 and current_time - back_sensor_left_time < 0.05:
                 print("Right front and left back sensors detected")
                 Move(GPIO.LOW, max_speed, lowest_speed)
         # if front left sensor and back left sensor detect line (left side)
         if sensor_left_flag and back_sensor_left_flag:
-            if current_time - left_sensor_time < 0.1 and current_time - back_sensor_left_time < 0.1:
+            if current_time - left_sensor_time < 0.05 and current_time - back_sensor_left_time < 0.05:
                 print("Left front and left back sensors detected")
                 Move(GPIO.LOW, lowest_speed, max_speed)
         # if front right sensor and back right sensor detect line (right side)
         if sensor_right_flag and back_sensor_right_flag:
-            if current_time - right_sensor_time < 0.1 and current_time - back_sensor_right_time < 0.1:
+            if current_time - right_sensor_time < 0.05 and current_time - back_sensor_right_time < 0.05:
                 print("Right front and right back sensors detected")
                 Move(GPIO.LOW, max_speed, lowest_speed)
         
