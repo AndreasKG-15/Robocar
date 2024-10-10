@@ -120,7 +120,15 @@ try:
             print("Right sensor detected line")
             left_sensor_enabled = True
             Move(GPIO.LOW, 60, 30)
-          
+        elif back_line_sensor_left_value == GPIO.LOW:
+            print("Back left sensor detected line")
+            Move(GPIO.LOW, 10, 70) 
+        elif back_line_sensor_right_value == GPIO.LOW:
+            print("Back right sensor detected line")
+            Move(GPIO.LOW, 70, 10)
+        elif back_line_sensor_left_value == GPIO.LOW and back_line_sensor_right_value == GPIO.LOW:
+            print("Both back sensors detected line")
+            Move(GPIO.LOW, 40, 40) 
             #if sensor_value_left == GPIO.LOW:
             #    break
             #time.sleep(0.1)
