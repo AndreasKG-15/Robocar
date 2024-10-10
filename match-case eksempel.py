@@ -85,24 +85,34 @@ try:
         match(sensor_value_left, sensor_value_right, back_sensor_left_value, back_sensor_right_value):
             case(GPIO.LOW, GPIO.LOW, GPIO.LOW, GPIO.LOW):
                 print("All sensors are on the line")
+                Move(GPIO.LOW, 0, 0)
             case(GPIO.HIGH, GPIO.HIGH, GPIO.HIGH, GPIO.HIGH):
                 print("No sensors are on the line")
+                Move(GPIO.LOW, 50, 50)
             case(GPIO.HIGH, GPIO.LOW, GPIO.LOW, GPIO.LOW):
                 print("Left sensor is on the line")
+                Move(GPIO.LOW, 0, 50)
             case(GPIO.LOW, GPIO.HIGH, GPIO.LOW, GPIO.LOW):
                 print("Right sensor is on the line")
+                Move(GPIO.LOW, 50, 0)
             case(GPIO.LOW, GPIO.LOW, GPIO.HIGH, GPIO.LOW):
                 print("Back left sensor is on the line")
+                Move(GPIO.LOW, 0, 50)
             case(GPIO.LOW, GPIO.LOW, GPIO.LOW, GPIO.HIGH):
                 print("Back right sensor is on the line")
+                Move(GPIO.LOW, 50, 0)
             case(GPIO.LOW, GPIO.HIGH, GPIO.HIGH, GPIO.LOW):
                 print("Right sensor and back left sensor are on the line")
+                Move(GPIO.LOW, 50, 0)
             case(GPIO.HIGH, GPIO.LOW, GPIO.LOW, GPIO.HIGH):
                 print("Left sensor and back right sensor are on the line")
+                Move(GPIO.LOW, 0, 50)
             case(GPIO.LOW, GPIO.LOW, GPIO.HIGH, GPIO.HIGH):
                 print("Left and right sensor are on the line")
+                Move(GPIO.LOW, 25, 25)
             case(GPIO.HIGH, GPIO.HIGH, GPIO.LOW, GPIO.LOW):
                 print("Back left and back right sensor are on the line")
+                Move(GPIO.LOW, 25, 25)
         time.sleep(0.1)    
 except KeyboardInterrupt:
     pass
