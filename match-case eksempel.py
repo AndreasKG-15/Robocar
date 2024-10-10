@@ -112,7 +112,7 @@ try:
                 Move(GPIO.LOW, 0, 0)
             case(GPIO.HIGH, GPIO.HIGH, GPIO.HIGH, GPIO.HIGH):
                 print("No sensors are on the line")
-                if sensor_value_left == GPIO.HIGH:
+                if sensor_value_left == GPIO.LOW:
                     print("Left sensor is on the line")
                     Move(GPIO.LOW, 50, 0)
                 Move(GPIO.LOW, 50, 50)
