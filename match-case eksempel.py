@@ -84,7 +84,7 @@ try:
 
         match(sensor_value_left, sensor_value_right, back_sensor_left_value, back_sensor_right_value):
             case(GPIO.LOW, GPIO.LOW, GPIO.LOW, GPIO.LOW):
-                print("All sensors are not on the line")
+                print("All sensors are on the line")
             case(GPIO.HIGH, GPIO.LOW, GPIO.LOW, GPIO.LOW):
                 print("Left sensor is on the line")
             case(GPIO.LOW, GPIO.HIGH, GPIO.LOW, GPIO.LOW):
@@ -101,7 +101,7 @@ try:
                 print("Left and right sensor are on the line")
             case(GPIO.HIGH, GPIO.HIGH, GPIO.LOW, GPIO.LOW):
                 print("Back left and back right sensor are on the line")
-            
+        time.sleep(0.1)    
 except KeyboardInterrupt:
     pass
 finally:
