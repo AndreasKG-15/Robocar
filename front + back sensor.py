@@ -24,8 +24,8 @@ pwm2B = 1
 line_sensor_left = 16
 line_sensor_right = 12
 
-backup_line_sensor_left = 2
-backup_line_sensor_right = 3
+back_sensor_left = 2
+back_sensor_right = 3
 
 
 # Setting pins to outpt
@@ -41,8 +41,8 @@ GPIO.setup(pwm2B, GPIO.OUT)
 GPIO.setup(line_sensor_left, GPIO.IN)
 GPIO.setup(line_sensor_right, GPIO.IN)
 
-GPIO.setup(backup_line_sensor_left, GPIO.IN)
-GPIO.setup(backup_line_sensor_right, GPIO.IN)
+GPIO.setup(back_sensor_left, GPIO.IN)
+GPIO.setup(back_sensor_right, GPIO.IN)
 
 pwm1 = GPIO.PWM(pwm1F, 50)
 pwm2 = GPIO.PWM(pwm2F, 50)
@@ -81,34 +81,34 @@ try:
     while True:
         sensor_value_left = GPIO.input(line_sensor_left)
         sensor_value_right = GPIO.input(line_sensor_right)
-        backup_line_sensor_left_value = GPIO.input(backup_line_sensor_left)
-        backup_line_sensor_right_value = GPIO.input(backup_line_sensor_right)
+        back_line_sensor_left_value = GPIO.input(back_sensor_left)
+        back_line_sensor_right_value = GPIO.input(back_sensor_right)
         if sensor_value_left == GPIO.LOW and sensor_value_right == GPIO.LOW:
             print("Both sensors detected line, moving forward slowly")
             Move(GPIO.LOW, 70, 70)
-        elif backup_line_sensor_left_value == GPIO.LOW:
-            left_sensor_enabled = False
-            print("Left sensor disabled")
-            print("backup sensor enabled")
-            while left_sensor_enabled == False:
-                Move(GPIO.LOW, 0, 70)
-                if(sensor_value_right == GPIO.LOW):
-                    left_sensor_enabled = True
-                    print("Left sensor enabled")
-                    break
+        #elif back_line_sensor_left_value == GPIO.LOW:
+        #    left_sensor_enabled = False
+        #    print("Left sensor disabled")
+        #    print("backup sensor enabled")
+        #    while left_sensor_enabled == False:
+        #        Move(GPIO.LOW, 0, 70)
+        #        if(sensor_value_right == GPIO.LOW):
+        #            left_sensor_enabled = True
+        #            print("Left sensor enabled")
+        #            break
             #time.sleep(0.1)
             #if sensor_value_right == GPIO.LOW:
             #    break
-        elif backup_line_sensor_right_value == GPIO.LOW:
-            right_sensor_enabled = False
-            print("Right sensor disabled")
-            print("Righ backup sensor enabled")
-            while right_sensor_enabled == False:
-                Move(GPIO.LOW, 70, 0)
-                if(sensor_value_left == GPIO.LOW):
-                    right_sensor_enabled = True
-                    print("Right sensor enabled")
-                    break
+        #elif back_line_sensor_right_value == GPIO.LOW:
+        #    right_sensor_enabled = False
+        #    print("Right sensor disabled")
+        #    print("Righ backup sensor enabled")
+        #    while right_sensor_enabled == False:
+        #        Move(GPIO.LOW, 70, 0)
+        #        if(sensor_value_left == GPIO.LOW):
+        #            right_sensor_enabled = True
+        #            print("Right sensor enabled")
+        #            break
         elif sensor_value_right == GPIO.HIGH and sensor_value_left == GPIO.HIGH:
             print("No line detected, moving forward")
             Move(GPIO.LOW, 65, 65)
