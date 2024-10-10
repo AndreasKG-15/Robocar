@@ -94,6 +94,7 @@ try:
             print("Right sensor detected line")
             left_sensor_enabled = True
             Move(GPIO.LOW, 60, 0)
+        time.sleep(0.1)
 except KeyboardInterrupt:
     pass
 finally:
