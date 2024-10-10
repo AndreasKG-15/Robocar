@@ -90,10 +90,12 @@ try:
             print("Left sensor detected line")
             right_sensor_enabled = True
             Move(GPIO.LOW, 0, 60)
+            time.sleep(0.1)
         elif backup_line_sensor_right_value == GPIO.LOW:
             print("Right sensor detected line")
             left_sensor_enabled = True
             Move(GPIO.LOW, 60, 0)
+            time.sleep(0.1)
         time.sleep(0.1)
 except KeyboardInterrupt:
     pass
