@@ -90,6 +90,9 @@ try:
         if sensor_value_left == 0 and sensor_value_right == 1:
             print("Left sensor detected line")
             Move(0, 0, 50)
+        if sensor_value_left == 0 and sensor_value_right == 0:
+            print("Both sensors detected line")
+            Move(0, 40, 40)
         time.sleep(0.1)
 except KeyboardInterrupt:
     pass
