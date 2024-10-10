@@ -51,7 +51,9 @@ pwm4.start(0)
 
 def Move(direction, speedL, speedR):
     GPIO.output(dir1F, direction)
-    GPIO.output(dir2F, not direction)
+    GPIO.output(dir2F, direction)
+    GPIO.output(dir1B, direction)
+    GPIO.output(dir2B, direction)
     pwm1.ChangeDutyCycle(speedL)
     pwm3.ChangeDutyCycle(speedL)
     pwm2.ChangeDutyCycle(speedR)
