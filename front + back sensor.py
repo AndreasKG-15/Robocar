@@ -77,6 +77,9 @@ def Move(state, speedLeft, speedRight):
 left_sensor_enabled = True
 right_sensor_enabled = True
 
+max_speed = 70
+lowest_speed = 10
+
 try:
     while True:
         sensor_value_left = GPIO.input(line_sensor_left)
@@ -85,7 +88,7 @@ try:
         back_sensor_right_value = GPIO.input(back_sensor_right)
         if sensor_value_left == GPIO.LOW and sensor_value_right == GPIO.LOW:
             print("Both sensors detected line, moving forward slowly")
-            Move(GPIO.LOW, 70, 70)
+            Move(GPIO.LOW, max_speed, max_speed)
         #elif back_line_sensor_left_value == GPIO.LOW:
         #    left_sensor_enabled = False
         #    print("Left sensor disabled")
@@ -111,24 +114,24 @@ try:
         #            break
         elif back_sensor_left_value == GPIO.LOW and back_sensor_right_value == GPIO.LOW:
             print("Both back sensors detected line")
-            Move(GPIO.LOW, 40, 40) 
+            Move(GPIO.LOW, lowest_speed+30, lowest_speed+30) 
         elif back_sensor_left_value == GPIO.LOW:
             print("Back left sensor detected line")
-            Move(GPIO.LOW, 10, 70) 
+            Move(GPIO.LOW, lowest_speed, max_speed+5) 
         elif back_sensor_right_value == GPIO.LOW:
             print("Back right sensor detected line")
-            Move(GPIO.LOW, 70, 10)
+            Move(GPIO.LOW, max_speed+5, lowest_speed)
         elif sensor_value_right == GPIO.HIGH and sensor_value_left == GPIO.HIGH:
             print("No line detected, moving forward")
-            Move(GPIO.LOW, 65, 65)
+            Move(GPIO.LOW, max_speed, max_speed)
         elif sensor_value_left == GPIO.LOW and left_sensor_enabled:
             print("Left sensor detected line")
             right_sensor_enabled = True
-            Move(GPIO.LOW, 30, 60)
+            Move(GPIO.LOW, lowest_speed, max_speed)
         elif sensor_value_right == GPIO.LOW and right_sensor_enabled:
             print("Right sensor detected line")
             left_sensor_enabled = True
-            Move(GPIO.LOW, 60, 30)
+            Move(GPIO.LOW, max_speed, lowest_speed)
             #if sensor_value_left == GPIO.LOW:
             #    break
             #time.sleep(0.1)
