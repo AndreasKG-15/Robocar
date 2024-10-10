@@ -85,16 +85,16 @@ try:
             Move(GPIO.LOW, 50, 50)
         elif backup_line_sensor_right_value == GPIO.HIGH and backup_line_sensor_left_value == GPIO.HIGH:
             print("No line detected, moving forward")
-            Move(GPIO.LOW, 90, 90)
+            Move(GPIO.LOW, 85, 85)
         elif backup_line_sensor_left_value == GPIO.LOW:
             print("Left sensor detected line")
             right_sensor_enabled = True
-            Move(GPIO.LOW, 0, 90)
+            Move(GPIO.LOW, 0, 87)
             time.sleep(0.1)
         elif backup_line_sensor_right_value == GPIO.LOW:
             print("Right sensor detected line")
             left_sensor_enabled = True
-            Move(GPIO.LOW, 90, 0)
+            Move(GPIO.LOW, 87, 0)
             time.sleep(0.1)
         time.sleep(0.1)
 except KeyboardInterrupt:
