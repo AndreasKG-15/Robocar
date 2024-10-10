@@ -49,16 +49,15 @@ pwm4.start(0)
 
 
 
-def Move(direction, speedL, speedR):
-    GPIO.output(dir1F, direction)
-    GPIO.output(dir2F, direction)
-    GPIO.output(dir1B, direction)
-    GPIO.output(dir2B, direction)
-    pwm1.ChangeDutyCycle(speedL)
-    pwm3.ChangeDutyCycle(speedL)
-    pwm2.ChangeDutyCycle(speedR)
-    pwm4.ChangeDutyCycle(speedR)
-    
+def Move(state, speedLeft, speedRight):
+    GPIO.output(dir1F, state)
+    GPIO.output(dir2F, state)
+    GPIO.output(dir1B, state)
+    GPIO.output(dir2B, state)
+    pwm1.ChangeDutyCycle(speedLeft)
+    #pwm2.ChangeDutyCycle(speedRight)
+    pwm3.ChangeDutyCycle(speedLeft)
+    #pwm4.ChangeDutyCycle(speedRight)
         
 
 
@@ -67,14 +66,14 @@ try:
         sensor_value_left = GPIO.input(line_sensor_left)
         sensor_value_right = GPIO.input(line_sensor_right)
         
-        if sensor_value_right == GPIO.HIGH and sensor_value_left == GPIO.HIGH:
+        if sensor_value_right == GPIO.LOW and sensor_value_left == GPIO.LOW:
             print("No line detected, moving forward")
-            Move(GPIO.HIGH, 100, 100)
-        elif sensor_value_left == GPIO.LOW and sensor_value_right == GPIO.LOW:
+            Move(GPIO.LOW, 100, 100)
+        elif sensor_value_left == GPIO.HIGH and sensor_value_right == GPIO.HIGH:
             print("Both sensors detected line, moving forward slowly")
-        elif sensor_value_left == GPIO.LOW:
+        elif sensor_value_left == GPIO.HIGH:
             print("Left sensor detected line")
-        elif sensor_value_right == GPIO.LOW:
+        elif sensor_value_right == GPIO.HIGH:
             print("Right sensor detected line")
         time.sleep(0.1)   
 except KeyboardInterrupt:
