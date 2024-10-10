@@ -48,38 +48,39 @@ pwm4.start(0)
 
 
 
-sensor_value_left = GPIO.input(line_sensor_left)
-sensor_value_right = GPIO.input(line_sensor_right)
 
-def forward(direction, speed):
-    if direction == 'forward':
-        GPIO.output(dir1F, GPIO.LOW)
-        GPIO.output(dir2F, GPIO.LOW)
-        GPIO.output(dir1B, GPIO.LOW)
-        GPIO.output(dir2B, GPIO.LOW)
-    pwm1.ChangeDutyCycle(speed)
-    pwm2.ChangeDutyCycle(speed)
-    pwm3.ChangeDutyCycle(speed)
-    pwm4.ChangeDutyCycle(speed)
-    if sensor_value_left == GPIO.HIGH:
-        pwm1.ChangeDutyCycle(speed/2)
-        pwm3.ChangeDutyCycle(speed/2)
-    if sensor_value_right == GPIO.HIGH:
-        pwm2.ChangeDutyCycle(speed/2)
-        pwm4.ChangeDutyCycle(speed/2)
-    if sensor_value_left == GPIO.HIGH and sensor_value_right == GPIO.HIGH:
-        pwm1.ChangeDutyCycle(speed/4)
-        pwm2.ChangeDutyCycle(speed/4)
-        pwm3.ChangeDutyCycle(speed/4)
-        pwm4.ChangeDutyCycle(speed/4)
+def forward(direction, speedL, speedR):
+    GPIO.output(dir1F, direction)
+    GPIO.output(dir2F, not direction)
+    pwm1.ChangeDutyCycle(speedL)
+    pwm3.ChangeDutyCycle(speedL)
+    pwm2.ChangeDutyCycle(speedR)
+    pwm4.ChangeDutyCycle(speedR)
+    
         
 
 
-forward('forward', 100)
-time.sleep(5)
+try:
+    while True:
+        sensor_value_left = GPIO.input(line_sensor_left)
+        sensor_value_right = GPIO.input(line_sensor_right)
+        
+        if sensor_value_right == GPIO.LOW and sensor_value_left == GPIO.LOW:
+            print("No line detected, moving forward")
+        elif sensor_value_left == GPIO.HIGH:
+            print("Left sensor detected line")
+        elif sensor_value_right == GPIO.HIGH:
+            print("Right sensor detected line")
+        elif sensor_value_left == GPIO.HIGH and sensor_value_right == GPIO.HIGH:
+            print("Both sensors detected line, moving forward slowly")
+        time.sleep(0.1)   
+except KeyboardInterrupt:
+    pass
 
-pwm1.stop()
-pwm2.stop()
-pwm3.stop()
-pwm4.stop()
-GPIO.cleanup()
+finally:
+    print("Cleaning up")
+    pwm1.stop()
+    pwm2.stop()
+    pwm3.stop()
+    pwm4.stop()
+    GPIO.cleanup()
