@@ -65,13 +65,13 @@ try:
         sensor_value_left = GPIO.input(line_sensor_left)
         sensor_value_right = GPIO.input(line_sensor_right)
         
-        if sensor_value_right == GPIO.LOW and sensor_value_left == GPIO.LOW:
+        if sensor_value_right == GPIO.HIGH and sensor_value_left == GPIO.HIGH:
             print("No line detected, moving forward")
-        elif sensor_value_left == GPIO.HIGH:
+        elif sensor_value_left == GPIO.LOW:
             print("Left sensor detected line")
-        elif sensor_value_right == GPIO.HIGH:
+        elif sensor_value_right == GPIO.LOW:
             print("Right sensor detected line")
-        elif sensor_value_left == GPIO.HIGH and sensor_value_right == GPIO.HIGH:
+        elif sensor_value_left == GPIO.LOW and sensor_value_right == GPIO.LOW:
             print("Both sensors detected line, moving forward slowly")
         time.sleep(0.1)   
 except KeyboardInterrupt:
