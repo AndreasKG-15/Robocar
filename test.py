@@ -83,7 +83,10 @@ try:
         sensor_value_right = GPIO.input(line_sensor_right)
         backup_line_sensor_left_value = GPIO.input(backup_line_sensor_left)
         backup_line_sensor_right_value = GPIO.input(backup_line_sensor_right)
-        if backup_line_sensor_left_value == GPIO.LOW:
+        if sensor_value_left == GPIO.LOW and sensor_value_right == GPIO.LOW:
+            print("Both sensors detected line, moving forward slowly")
+            Move(GPIO.LOW, 70, 70)
+        elif backup_line_sensor_left_value == GPIO.LOW:
             left_sensor_enabled = False
             print("Left sensor disabled")
             print("backup sensor enabled")
@@ -108,13 +111,9 @@ try:
                     right_sensor_enabled = True
                     print("Right sensor enabled")
                     break
-            
         elif sensor_value_right == GPIO.HIGH and sensor_value_left == GPIO.HIGH:
             print("No line detected, moving forward")
-            Move(GPIO.LOW, 60, 60)
-        elif sensor_value_left == GPIO.LOW and sensor_value_right == GPIO.LOW:
-            print("Both sensors detected line, moving forward slowly")
-            Move(GPIO.LOW, 40, 40)
+            Move(GPIO.LOW, 65, 65)
         elif sensor_value_left == GPIO.LOW and left_sensor_enabled:
             print("Left sensor detected line")
             right_sensor_enabled = True
