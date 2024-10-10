@@ -81,9 +81,9 @@ try:
         back_sensor_left_value = GPIO.input(back_sensor_left)
         back_sensor_right_value = GPIO.input(back_sensor_right)
         current_time = time.time()
-        if sensor_value_left == 0 and sensor_value_right == 0:
+        if sensor_value_left == 1 and sensor_value_right == 1:
             print("Both sensors are off the line")
-            Move(1, 50, 50)
+            Move(0, 50, 50)
 
 except KeyboardInterrupt:
     pass
