@@ -208,7 +208,7 @@ try:
                 Move(GPIO.LOW, max_speed, lowest_speed)
         
         # Individiual sensor detection
-        
+        '''
         # if front left sensor detects line
         if sensor_left_flag and not sensor_right_flag and not back_sensor_left_flag and not back_sensor_right_flag:
             print("Left sensor detected")
@@ -225,7 +225,7 @@ try:
         if back_sensor_right_flag and not sensor_left_flag and not sensor_right_flag and not back_sensor_left_flag:
             print("Back right sensor detected")
             Move(GPIO.LOW, max_speed, lowest_speed)
-            
+        '''    
             
         time.sleep(0.1)   
 except KeyboardInterrupt:
