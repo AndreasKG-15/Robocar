@@ -41,9 +41,13 @@ pwm1 = GPIO.PWM(pwm1F, 50)
 pwm2 = GPIO.PWM(pwm2F, 50)
 pwm3 = GPIO.PWM(pwm1B, 50)
 pwm4 = GPIO.PWM(pwm2B, 50)
+# pwm front right
 pwm1.start(0)
+# pwm front left
 pwm2.start(0)
+# pwm back right
 pwm3.start(0)
+# pwm back left
 pwm4.start(0)
 
 
@@ -54,10 +58,14 @@ def Move(state, speedLeft, speedRight):
     GPIO.output(dir2F, state)
     GPIO.output(dir1B, state)
     GPIO.output(dir2B, state)
-    pwm1.ChangeDutyCycle(speedLeft)
-    #pwm2.ChangeDutyCycle(speedRight)
-    pwm3.ChangeDutyCycle(speedLeft)
-    #pwm4.ChangeDutyCycle(speedRight)
+    # Set speed for front right motor
+    pwm1.ChangeDutyCycle(speedRight)
+    # Set speed for front left motor
+    pwm2.ChangeDutyCycle(speedLeft)
+    # Set speed for back right motor
+    pwm3.ChangeDutyCycle(speedRight)
+    # Set speed for back left motor
+    pwm4.ChangeDutyCycle(speedLeft)
         
 
 
@@ -71,10 +79,13 @@ try:
             Move(GPIO.LOW, 100, 100)
         elif sensor_value_left == GPIO.LOW and sensor_value_right == GPIO.LOW:
             print("Both sensors detected line, moving forward slowly")
+            Move(GPIO.LOW, 25, 25)
         elif sensor_value_left == GPIO.LOW:
             print("Left sensor detected line")
+            Move(GPIO.LOW, 50, 100)
         elif sensor_value_right == GPIO.LOW:
             print("Right sensor detected line")
+            Move(GPIO.LOW, 100, 50)
         time.sleep(0.1)   
 except KeyboardInterrupt:
     pass
