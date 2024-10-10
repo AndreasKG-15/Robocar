@@ -80,6 +80,16 @@ right_sensor_enabled = True
 max_speed = 70
 lowest_speed = 10
 
+sensor_left_flag = False
+sensor_right_flag = False
+back_sensor_left_flag = False
+back_sensor_right_flag = False
+
+left_sensor_time = 0
+right_sensor_time = 0
+back_sensor_left_time = 0
+back_sensor_right_time = 0
+
 try:
     while True:
         sensor_value_left = GPIO.input(line_sensor_left)
