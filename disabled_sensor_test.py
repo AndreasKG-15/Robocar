@@ -85,7 +85,7 @@ try:
             Move(GPIO.LOW, 50, 50)
         elif backup_line_sensor_right_value == GPIO.HIGH and backup_line_sensor_left_value == GPIO.HIGH:
             print("No line detected, moving forward")
-            Move(GPIO.LOW, 60, 60)
+            Move(GPIO.LOW, 90, 90)
         elif backup_line_sensor_left_value == GPIO.LOW:
             print("Left sensor detected line")
             right_sensor_enabled = True
