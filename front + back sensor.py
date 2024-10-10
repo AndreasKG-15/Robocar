@@ -86,6 +86,7 @@ try:
         sensor_value_right = GPIO.input(line_sensor_right)
         back_sensor_left_value = GPIO.input(back_sensor_left)
         back_sensor_right_value = GPIO.input(back_sensor_right)
+        current_time = time.time()
         if sensor_value_left == GPIO.LOW and sensor_value_right == GPIO.LOW:
             print("Both sensors detected line, moving forward slowly")
             Move(GPIO.LOW, max_speed, max_speed)
@@ -140,7 +141,12 @@ try:
             Move(GPIO.LOW, lowest_speed, max_speed) 
         elif back_sensor_left_value == GPIO.LOW and sensor_value_right == GPIO.LOW:
             print("Back right sensor detected line")
-            Move(GPIO.LOW, max_speed, lowest_speed) 
+            Move(GPIO.LOW, max_speed, lowest_speed)
+            
+        if sensor_value_left == 1:
+            sensor_left_flag = True
+            left_sensor_time = current_time
+            print("Left sensor detected")
             
         time.sleep(0.1)   
 except KeyboardInterrupt:
