@@ -144,7 +144,7 @@ try:
             print("Back right sensor detected line")
             Move(GPIO.LOW, max_speed, lowest_speed)
         '''
-        if sensor_value_left == 1:
+        if sensor_value_left == 0:
             sensor_left_flag = True
             left_sensor_time = current_time
             print("Left sensor detected")
