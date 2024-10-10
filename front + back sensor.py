@@ -171,14 +171,50 @@ try:
             back_sensor_right_flag = True
             back_sensor_right_time = current_time
             #print("Back right sensor detected")
+            
+        # Pair sensor detection
+        
+        # If both front sensors detect line
         if sensor_left_flag and sensor_right_flag:
             if current_time - left_sensor_time < 0.5 and current_time - right_sensor_time < 0.5:
                 print("Both front sensors detected")
                 Move(GPIO.LOW, lowest_speed+50, lowest_speed+50)
+        # If front left sensor and back right sensor detect line
         if sensor_left_flag and back_sensor_right_flag:
             if current_time - left_sensor_time < 0.5 and current_time - back_sensor_right_time < 0.5:
                 print("Left front and right back sensors detected")
                 Move(GPIO.LOW, lowest_speed+25, max_speed-10)
+        # if front right sensor and back left sensor detect line
+        if sensor_right_flag and back_sensor_left_flag:
+            if current_time - right_sensor_time < 0.5 and current_time - back_sensor_left_time < 0.5:
+                print("Right front and left back sensors detected")
+                Move(GPIO.LOW, max_speed-10, lowest_speed+25)
+        # if front left sensor and back left sensor detect line (left side)
+        if sensor_left_flag and back_sensor_left_flag:
+            if current_time - left_sensor_time < 0.5 and current_time - back_sensor_left_time < 0.5:
+                print("Left front and left back sensors detected")
+                Move(GPIO.LOW, lowest_speed, max_speed)
+        # if front right sensor and back right sensor detect line (right side)
+        if sensor_right_flag and back_sensor_right_flag:
+            if current_time - right_sensor_time < 0.5 and current_time - back_sensor_right_time < 0.5:
+                print("Right front and right back sensors detected")
+                Move(GPIO.LOW, max_speed, lowest_speed)
+        
+        # Individiual sensor detection
+        
+        # if front left sensor detects line
+        if sensor_left_flag:
+            Move(GPIO.LOW, lowest_speed, max_speed)
+        # if front right sensor detects line
+        if sensor_right_flag:
+            Move(GPIO.LOW, max_speed, lowest_speed)
+        # if back left sensor detects line
+        if back_sensor_left_flag:
+            Move(GPIO.LOW, lowest_speed, max_speed)
+        # if back right sensor detects line
+        if back_sensor_right_flag:
+            Move(GPIO.LOW, max_speed, lowest_speed)
+            
             
         time.sleep(0.1)   
 except KeyboardInterrupt:
