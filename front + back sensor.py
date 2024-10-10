@@ -174,6 +174,9 @@ try:
             
         # Pair sensor detection
         
+        # If no sensor detects line
+        if not sensor_left_flag and not sensor_right_flag and not back_sensor_left_flag and not back_sensor_right_flag:
+            Move(GPIO.LOW, max_speed, max_speed)
         # If both front sensors detect line
         if sensor_left_flag and sensor_right_flag:
             if current_time - left_sensor_time < 0.1 and current_time - right_sensor_time < 0.1:
