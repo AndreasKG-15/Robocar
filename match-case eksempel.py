@@ -97,9 +97,9 @@ try:
                 print("Right sensor and back left sensor are on the line")
             case(GPIO.HIGH, GPIO.LOW, GPIO.LOW, GPIO.HIGH):
                 print("Left sensor and back right sensor are on the line")
-            case(GPIO.HIGH, GPIO.HIGH, GPIO.LOW, GPIO.LOW):
-                print("Left and right sensor are on the line")
             case(GPIO.LOW, GPIO.LOW, GPIO.HIGH, GPIO.HIGH):
+                print("Left and right sensor are on the line")
+            case(GPIO.HIGH, GPIO.HIGH, GPIO.LOW, GPIO.LOW):
                 print("Back left and back right sensor are on the line")
             
 except KeyboardInterrupt:
