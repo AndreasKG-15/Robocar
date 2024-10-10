@@ -207,15 +207,19 @@ try:
         
         # if front left sensor detects line
         if sensor_left_flag and not sensor_right_flag and not back_sensor_left_flag and not back_sensor_right_flag:
+            print("Left sensor detected")
             Move(GPIO.LOW, lowest_speed, max_speed)
         # if front right sensor detects line
         if sensor_right_flag and not sensor_left_flag and not back_sensor_left_flag and not back_sensor_right_flag:
+            print("Right sensor detected")
             Move(GPIO.LOW, max_speed, lowest_speed)
         # if back left sensor detects line
         if back_sensor_left_flag and not sensor_left_flag and not sensor_right_flag and not back_sensor_right_flag:
+            print("Back left sensor detected")
             Move(GPIO.LOW, lowest_speed, max_speed)
         # if back right sensor detects line
         if back_sensor_right_flag and not sensor_left_flag and not sensor_right_flag and not back_sensor_left_flag:
+            print("Back right sensor detected")
             Move(GPIO.LOW, max_speed, lowest_speed)
             
             
