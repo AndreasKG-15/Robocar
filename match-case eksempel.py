@@ -83,9 +83,9 @@ try:
         current_time = time.time()
 
         match(sensor_value_left, sensor_value_right, back_sensor_left_value, back_sensor_right_value):
-            case(GPIO.HIGH, GPIO.LOW, GPIO.LOW, GPIO.LOW):
-                print("Left sensor is on the line")
-                Move(GPIO.LOW, 0, 50)
+            #case(GPIO.HIGH, GPIO.LOW, GPIO.LOW, GPIO.LOW):
+             #   print("Left sensor is on the line")
+             #   Move(GPIO.LOW, 0, 50)
             case(GPIO.LOW, GPIO.HIGH, GPIO.LOW, GPIO.LOW):
                 print("Right sensor is on the line")
                 Move(GPIO.LOW, 50, 0)
