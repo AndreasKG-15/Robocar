@@ -84,9 +84,9 @@ try:
         if sensor_value_left == 1 and sensor_value_right == 1:
             print("Both sensors are off the line")
             Move(0, 50, 50)
-            if sensor_value_left == 1 and sensor_value_right == 0:
-                print("Right sensor detected line")
-                Move(0, 50, 0)
+        if sensor_value_left == 1 and sensor_value_right == 0:
+            print("Right sensor detected line")
+            Move(0, 50, 0)
         time.sleep(0.1)
 except KeyboardInterrupt:
     pass
