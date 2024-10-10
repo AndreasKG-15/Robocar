@@ -57,6 +57,9 @@ pwm3.start(0)
 # pwm back left
 pwm4.start(0)
 
+front_left_sensor = True
+front_right_sensor = True
+
 
 
 
@@ -81,18 +84,35 @@ try:
         back_sensor_left_value = GPIO.input(back_sensor_left)
         back_sensor_right_value = GPIO.input(back_sensor_right)
         current_time = time.time()
-        if sensor_value_left == 1 and sensor_value_right == 1:
+        if sensor_value_left == 1 and sensor_value_right == 1 and front_left_sensor == True and front_right_sensor == True:
             print("Both sensors are off the line")
             Move(0, 50, 50)
-        if sensor_value_left == 1 and sensor_value_right == 0:
+        if sensor_value_left == 1 and sensor_value_right == 0 and front_left_sensor == True and front_right_sensor == True:
             print("Right sensor detected line")
+            front_left_sensor = True
             Move(0, 50, 0)
-        if sensor_value_left == 0 and sensor_value_right == 1:
+        if sensor_value_left == 0 and sensor_value_right == 1 and front_left_sensor == True and front_right_sensor == True:
             print("Left sensor detected line")
+            front_right_sensor = True
             Move(0, 0, 50)
-        if sensor_value_left == 0 and sensor_value_right == 0:
+        if sensor_value_left == 0 and sensor_value_right == 0 and front_left_sensor == True and front_right_sensor == True:
             print("Both sensors detected line")
             Move(0, 40, 40)
+        if back_sensor_left_value == 1 and back_sensor_right_value == 1 and front_left_sensor == True and front_right_sensor == True:
+            print("Both back sensors are off the line")
+            Move(0, 50, 50)
+        if back_sensor_left_value == 1 and back_sensor_right_value == 0 and front_left_sensor == True and front_right_sensor == True:
+            print("Right back sensor detected line")
+            front_left_sensor = False
+            Move(0, 50, 0)
+        if back_sensor_left_value == 0 and back_sensor_right_value == 1 and front_left_sensor == True and front_right_sensor == True:
+            print("Left back sensor detected line")
+            front_right_sensor = False
+            Move(0, 0, 50)
+        if back_sensor_left_value == 0 and back_sensor_right_value == 0 and front_left_sensor == True and front_right_sensor == True:
+            print("Both back sensors detected line")
+            Move(0, 40, 40)
+            
         time.sleep(0.1)
 except KeyboardInterrupt:
     pass
