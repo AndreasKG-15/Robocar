@@ -103,7 +103,7 @@ try:
             print("Righ backup sensor enabled")
             Move(GPIO.LOW, 70, 0)
             while right_sensor_enabled == False:
-                Move(GPIO.LOW, 0, 70)
+                Move(GPIO.LOW, 70, 0)
                 if(sensor_value_left == GPIO.LOW):
                     right_sensor_enabled = True
                     print("Right sensor enabled")
