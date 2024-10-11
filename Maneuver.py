@@ -99,7 +99,7 @@ try:
             Move(GPIO.LOW, 60, 60)
             print("No line detected")
         # checks if no line is detected
-        time.sleep(0.025)
+        time.sleep(0.05)
 except KeyboardInterrupt:
     pass
 
