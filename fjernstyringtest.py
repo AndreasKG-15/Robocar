@@ -58,8 +58,9 @@ def update_actions():
         left()
     elif 'd' in active_keys: #Højre
         right()
-    else:
-        Move(True, 0, 0) #Stop
+    elif 'p' in active_keys: #Stop
+        Move(True, 0, 0)
+
 
 def press(key):
     active_keys.add(key)
