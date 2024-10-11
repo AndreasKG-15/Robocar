@@ -72,7 +72,7 @@ def back():
     pwm4.ChangeDutyCycle(speed)
     print("Bagud")
 def left():
-    speed = 50
+    speed = 80
     GPIO.output(dir1F,GPIO.HIGH)
     GPIO.output(dir2F,GPIO.LOW)
     GPIO.output(dir1B,GPIO.LOW)
@@ -83,7 +83,7 @@ def left():
     pwm4.ChangeDutyCycle(speed)
     print("Venstre")
 def right():
-    speed = 50
+    speed = 80
     GPIO.output(dir1F,GPIO.LOW)
     GPIO.output(dir2F,GPIO.HIGH)
     GPIO.output(dir1B,GPIO.HIGH)
