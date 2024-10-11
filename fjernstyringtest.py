@@ -66,13 +66,13 @@ def right():
 def press(key):
     if key == 'w': #Fremad
         forward()
-    if key == 's': #Bagud
+    elif key == 's': #Bagud
         back()
-    if 'a': #Venstre
+    elif 'a': #Venstre
         left()
-    if key == 'd': #Højre
+    elif key == 'd': #Højre
         right()
-    if key == 'p': #Stop
+    elif key == 'p': #Stop
         Move(True, 0, 0)
 
 
