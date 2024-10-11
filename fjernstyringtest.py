@@ -49,7 +49,7 @@ def Move(state, speedLeft, speedRight):
     pwm3.ChangeDutyCycle(speedRight)
     pwm4.ChangeDutyCycle(speedLeft)
 
-speed = 90
+speed = 100
 def forward():
     GPIO.output(dir1F,GPIO.LOW)
     GPIO.output(dir2F,GPIO.LOW)
