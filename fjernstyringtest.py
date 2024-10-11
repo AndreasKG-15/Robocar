@@ -51,13 +51,13 @@ def Move(state, speedLeft, speedRight):
 
 def update_actions():
     if 'w' in active_keys:
-        Move(GPIO.LOW, 40, 40)
+        Move(GPIO.LOW, 100, 100)
     if 's' in active_keys:
-        Move(GPIO.LOW, 0, 0)
+        Move(GPIO.HIGH, 50, 50)
     if 'a' in active_keys:
-        Move(GPIO.LOW, 0, 30)
+        Move(GPIO.LOW, 0, 50)
     if 'd' in active_keys:
-        Move(GPIO.LOW, 30, 0)
+        Move(GPIO.LOW, 50, 0)
 
 def press(key):
     active_keys.add(key)
