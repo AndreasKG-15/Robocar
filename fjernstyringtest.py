@@ -57,16 +57,10 @@ def back():
     Move(GPIO.HIGH, 100, 100)
 
 def left():
-    if active_keys == 'w':
         Move(GPIO.LOW, 0, 100)
-    elif active_keys == 's':
-        Move(GPIO.HIGH, 100, 0)
 
 def right():
-    if active_keys == 'w':
         Move(GPIO.LOW, 100, 0)
-    elif active_keys == 's':
-        Move(GPIO.HIGH, 0, 100)
 
 def press(key):
     if key == 'w': #Fremad
