@@ -52,16 +52,17 @@ def Move(state, speedLeft, speedRight):
 
 def forward():
     Move(GPIO.LOW, 100, 100)
+    print("Fremad")
 
 def back():
     Move(GPIO.HIGH, 100, 100)
-
+    print("Bagud")
 def left():
-        Move(GPIO.LOW, 0, 100)
-
+    Move(GPIO.LOW, 0, 100)
+    print("Venstre")
 def right():
-        Move(GPIO.LOW, 100, 0)
-
+    Move(GPIO.LOW, 100, 0)
+    print("Højre")
 def press(key):
     if key == 'w': #Fremad
         forward()
