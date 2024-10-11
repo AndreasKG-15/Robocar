@@ -88,18 +88,18 @@ try:
             print("Both line sensors detected line")
             #time.sleep(0.1)
         elif sensor_value_left == GPIO.LOW:
-            Move(GPIO.LOW, 5, 100)
+            Move(GPIO.LOW, 2.5, 100)
             print("Line sensor left detected line")
             #time.sleep(0.125)
         elif sensor_value_right == GPIO.LOW:
-            Move(GPIO.LOW, 100, 5)
+            Move(GPIO.LOW, 100, 2.5)
             print("Line sensor right detected line")
             #time.sleep(0.125)
         elif sensor_value_left == GPIO.HIGH and sensor_value_right == GPIO.HIGH:
-            Move(GPIO.LOW, 50, 50)
+            Move(GPIO.LOW, 57.5, 57.5)
             print("No line detected")
         # checks if no line is detected
-        time.sleep(0.05)
+        time.sleep(0.1)
 except KeyboardInterrupt:
     pass
 
