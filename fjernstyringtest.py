@@ -89,10 +89,11 @@ def right():
         Move(GPIO.HIGH, 0, 100)
 
 
+
 try:
     while True:
         time.sleep(0.1)
-        listen_keyboard(on_press=press)
+        listen_keyboard()
 except KeyboardInterrupt:
     print("Programmet stoppes.")
 
