@@ -61,10 +61,10 @@ pwm4.start(0)
 
 
 def Move(stateL,stateR, speedLeft, speedRight):
-    GPIO.output(dir1F, stateL)
-    GPIO.output(dir2F, stateR)
-    GPIO.output(dir1B, stateL)
-    GPIO.output(dir2B, stateR)
+    GPIO.output(dir1F, stateR)
+    GPIO.output(dir2F, stateL)
+    GPIO.output(dir1B, stateR)
+    GPIO.output(dir2B, stateL)
     # Set speed for front right motor
     pwm1.ChangeDutyCycle(speedRight)
     # Set speed for front left motor
