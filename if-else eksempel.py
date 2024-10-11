@@ -57,8 +57,6 @@ pwm3.start(0)
 # pwm back left
 pwm4.start(0)
 
-front_left_sensor = True
-front_right_sensor = True
 
 
 
@@ -77,6 +75,42 @@ def Move(state, speedLeft, speedRight):
     # Set speed for back left motor
     pwm4.ChangeDutyCycle(speedLeft)
     
+def checkSensor(left_sensor, right_sensor, back_left_sensor, back_right_sensor):
+    front_left_sensor = True
+    front_right_sensor = True
+    print(f"Left sensor: {left_sensor}, Right sensor: {right_sensor}, Back left sensor: {back_left_sensor}, Back right sensor: {back_right_sensor}")
+    
+    if left_sensor == GPIO.HIGH and back_right_sensor == GPIO.LOW:
+        front_left_sensor = False
+    if right_sensor == GPIO.HIGH and back_left_sensor == GPIO.LOW:
+        front_right_sensor = False
+    if left_sensor == GPIO.LOW:
+        front_left_sensor = True
+        if left_sensor == GPIO.LOW and front_left_sensor == True:
+            print("Left sensor detected line")
+            Move(GPIO.LOW, 0, 50)
+            time.sleep(0.2)
+    if right_sensor == GPIO.LOW:
+        front_right_sensor = True
+        if right_sensor == GPIO.LOW and front_right_sensor == True:
+            print("Right sensor detected line")
+            Move(GPIO.LOW, 50, 0)
+            time.sleep(0.2)
+        
+    if back_left_sensor == GPIO.LOW:
+        print("Left back sensor detected line")
+        front_right_sensor = False
+        Move(GPIO.LOW, 0, 50)
+    elif back_right_sensor == GPIO.LOW:
+        print("Right back sensor detected line")
+        front_left_sensor = False
+        Move(GPIO.LOW, 50, 0)
+    elif left_sensor == GPIO.LOW and right_sensor == GPIO.LOW:
+        print("Both sensors detected line... moving forward slowly")
+        Move(GPIO.LOW, 40, 40)
+    
+    
+    
 try:
     while True:
         sensor_value_left = GPIO.input(line_sensor_left)
@@ -84,35 +118,17 @@ try:
         back_sensor_left_value = GPIO.input(back_sensor_left)
         back_sensor_right_value = GPIO.input(back_sensor_right)
         current_time = time.time()
-        if sensor_value_left == 1 and sensor_value_right == 1:
-            print("Both sensors are off the line")
-            Move(0, 50, 50)
-        if sensor_value_left == 1 and sensor_value_right == 0 and front_right_sensor == True:
-            print("Right sensor detected line")
-            front_left_sensor = True
-            Move(0, 50, 0)
-        if sensor_value_left == 0 and sensor_value_right == 1 and front_left_sensor == True:
-            print("Left sensor detected line")
-            front_right_sensor = True
-            Move(0, 0, 50)
-        if sensor_value_left == 0 and sensor_value_right == 0:
-            print("Both sensors detected line")
-            Move(0, 40, 40)
-        if back_sensor_left_value == 1 and back_sensor_right_value == 0:
-            print("Right back sensor detected line")
-            front_left_sensor = False
-            Move(0, 50, 0)
-        if back_sensor_left_value == 0 and back_sensor_right_value == 1:
-            print("Left back sensor detected line")
-            front_right_sensor = False
-            Move(0, 0, 50)
-        if back_sensor_left_value == 0 and back_sensor_right_value == 0:
-            print("Both back sensors detected line")
-            Move(0, 40, 40)
+        if sensor_value_left == GPIO.LOW and sensor_value_right == GPIO.LOW and back_sensor_left_value == GPIO.LOW and back_sensor_right_value == GPIO.LOW:
+            print("All sensors detect no line")
+            Move(GPIO.LOW, 50, 50)
+        else:
+            checkSensor(sensor_value_left, sensor_value_right, back_sensor_left_value, back_sensor_right_value)
             
         time.sleep(0.1)
 except KeyboardInterrupt:
-    pass
+    print("Keyboard interrupt detected.")
+except Exception as e:
+    print(f"An error occured: {e}")
 finally:
     GPIO.cleanup()
     print("GPIO cleanup completed.")
