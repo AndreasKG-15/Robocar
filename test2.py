@@ -99,7 +99,7 @@ try:
         elif sensor_value_left == GPIO.HIGH and sensor_value_right == GPIO.HIGH:
             print("No line detected")
             Move(GPIO.LOW, 70, 70)
-            time.sleep(0.1)
+        time.sleep(0.1)
 except KeyboardInterrupt:
     pass
 
