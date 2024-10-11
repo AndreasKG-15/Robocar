@@ -87,7 +87,7 @@ try:
             Move(GPIO.LOW, 40/1.25, 40/1.25)
             print("Both line sensors detected line")
             time.sleep(0.05)
-        elif sensor_value_left == GPIO.HIGH:
+        elif sensor_value_left == GPIO.LOW:
             Move(GPIO.LOW, 0, 100/1.25)
             print("Line sensor left detected line")
             time.sleep(0.13)
