@@ -74,9 +74,11 @@ listen_keyboard(
     sequential=False,
 )
 
+
 try:
     while True:
         time.sleep(0.1)
+        listen_keyboard()
 except KeyboardInterrupt:
     print("Programmet stoppes.")
 
