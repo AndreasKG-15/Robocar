@@ -68,7 +68,7 @@ def press(key):
         forward()
     elif key == 's': #Bagud
         back()
-    elif 'a': #Venstre
+    elif key == 'a': #Venstre
         left()
     elif key == 'd': #Højre
         right()
