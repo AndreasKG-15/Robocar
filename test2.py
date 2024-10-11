@@ -84,22 +84,22 @@ try:
         backup_line_sensor_left_value = GPIO.input(backup_line_sensor_left)
         backup_line_sensor_right_value = GPIO.input(backup_line_sensor_right)
         if sensor_value_left == GPIO.LOW and sensor_value_right == GPIO.LOW:
-            print("Both line sensors detected line")
             Move(GPIO.LOW, 60, 60)
+            print("Both line sensors detected line")
             #time.sleep(0.1)
         elif sensor_value_left == GPIO.HIGH and sensor_value_right == GPIO.HIGH:
-            print("No line detected")
             Move(GPIO.LOW, 75, 75)
+            print("No line detected")
         elif sensor_value_left == GPIO.LOW:
-            print("Line sensor left detected line")
             Move(GPIO.LOW, 5, 90)
+            print("Line sensor left detected line")
             #time.sleep(0.125)
         elif sensor_value_right == GPIO.LOW:
-            print("Line sensor right detected line")
             Move(GPIO.LOW, 90, 5)
+            print("Line sensor right detected line")
             #time.sleep(0.125)
         # checks if no line is detected
-        #time.sleep(0.075)
+        time.sleep(0.075)
 except KeyboardInterrupt:
     pass
 
