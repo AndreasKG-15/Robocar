@@ -60,11 +60,11 @@ pwm4.start(0)
 
 
 
-def Move(state, speedLeft, speedRight):
-    GPIO.output(dir1F, state)
-    GPIO.output(dir2F, state)
-    GPIO.output(dir1B, state)
-    GPIO.output(dir2B, state)
+def Move(stateL,stateR, speedLeft, speedRight):
+    GPIO.output(dir1F, stateL)
+    GPIO.output(dir2F, stateR)
+    GPIO.output(dir1B, stateL)
+    GPIO.output(dir2B, stateR)
     # Set speed for front right motor
     pwm1.ChangeDutyCycle(speedRight)
     # Set speed for front left motor
@@ -84,19 +84,19 @@ try:
         backup_line_sensor_left_value = GPIO.input(backup_line_sensor_left)
         backup_line_sensor_right_value = GPIO.input(backup_line_sensor_right)
         if sensor_value_left == GPIO.LOW and sensor_value_right == GPIO.LOW:
-            Move(GPIO.LOW, 40, 40)
+            Move(GPIO.LOW, GPIO.LOW, 40, 40)
             print("Both line sensors detected line")
             #time.sleep(0.1)
         elif sensor_value_left == GPIO.LOW:
-            Move(GPIO.LOW, 2.5, 100)
+            Move(GPIO.HIGH,GPIO.LOW, 15, 100)
             print("Line sensor left detected line")
             #time.sleep(0.125)
         elif sensor_value_right == GPIO.LOW:
-            Move(GPIO.LOW, 100, 2.5)
+            Move(GPIO.LOW, GPIO.HIGH, 100, 15)
             print("Line sensor right detected line")
             #time.sleep(0.125)
         elif sensor_value_left == GPIO.HIGH and sensor_value_right == GPIO.HIGH:
-            Move(GPIO.LOW, 57.5, 57.5)
+            Move(GPIO.LOW, GPIO.LOW, 57.5, 57.5)
             print("No line detected")
         # checks if no line is detected
         time.sleep(0.1)
