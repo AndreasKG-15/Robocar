@@ -52,9 +52,9 @@ def Move(state, speedLeft, speedRight):
 speed = 90
 def forward():
     GPIO.output(dir1F,GPIO.LOW)
-    GPIO.output(dir2F,GPIO.HIGH)
+    GPIO.output(dir2F,GPIO.LOW)
     GPIO.output(dir1B,GPIO.LOW)
-    GPIO.output(dir2B,GPIO.HIGH)
+    GPIO.output(dir2B,GPIO.LOW)
     pwm1.ChangeDutyCycle(100)
     pwm2.ChangeDutyCycle(100)
     pwm3.ChangeDutyCycle(100)
@@ -63,9 +63,9 @@ def forward():
 
 def back():
     GPIO.output(dir1F,GPIO.HIGH)
-    GPIO.output(dir2F,GPIO.LOW)
+    GPIO.output(dir2F,GPIO.HIGH)
     GPIO.output(dir1B,GPIO.HIGH)
-    GPIO.output(dir2B,GPIO.LOW)
+    GPIO.output(dir2B,GPIO.HIGH)
     pwm1.ChangeDutyCycle(speed)
     pwm2.ChangeDutyCycle(speed)
     pwm3.ChangeDutyCycle(speed)
