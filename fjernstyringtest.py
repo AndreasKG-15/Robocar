@@ -49,27 +49,6 @@ def Move(state, speedLeft, speedRight):
     pwm3.ChangeDutyCycle(speedRight)
     pwm4.ChangeDutyCycle(speedLeft)
 
-def update_actions():
-    if 'w' in active_keys: #Fremad
-        forward()
-    elif 's' in active_keys: #Bagud
-        back()
-    elif 'a' in active_keys: #Venstre
-        left()
-    elif 'd' in active_keys: #Højre
-        right()
-    elif 'p' in active_keys: #Stop
-        Move(True, 0, 0)
-
-
-def press(key):
-    active_keys.add(key)
-    update_actions()
-
-
-def release(key):
-    active_keys.discard(key)
-    update_actions()
 
 def forward():
     Move(GPIO.LOW, 100, 100)
@@ -89,12 +68,23 @@ def right():
     elif active_keys == 's':
         Move(GPIO.HIGH, 0, 100)
 
+def press(key):
+    if key == 'w': #Fremad
+        forward()
+    if key == 's': #Bagud
+        back()
+    if 'a': #Venstre
+        left()
+    if key == 'd': #Højre
+        right()
+    if key == 'p': #Stop
+        Move(True, 0, 0)
 
 
 try:
     while True:
         time.sleep(0.1)
-        listen_keyboard()
+        listen_keyboard(on_press=press)
 except KeyboardInterrupt:
     print("Programmet stoppes.")
 
