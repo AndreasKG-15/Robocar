@@ -95,6 +95,7 @@ try:
             print("Both line sensors detected line")
             Move(GPIO.LOW, 30, 30)
             time.sleep(0.2)
+        # checks if no line is detected
         elif sensor_value_left == GPIO.HIGH and sensor_value_right == GPIO.HIGH:
             print("No line detected")
             Move(GPIO.LOW, 50, 50)
